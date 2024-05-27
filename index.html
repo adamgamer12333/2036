@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>7/28/2036</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: black;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        #video-container {
+            width: 80%;
+            height: 80%;
+            position: relative;
+        }
+        #video {
+            width: 100%;
+            height: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div id="video-container">
+        <video id="video" autoplay muted>
+            <source src="run.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+    </div>
+    <audio id="audio" autoplay>
+        <source src="no.mp3" type="audio/mpeg">
+        Your browser does not support the audio tag.
+    </audio>
+
+    <script>
+        // Prevent right-click context menu on the video and audio
+        document.getElementById('video').addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+        document.getElementById('audio').addEventListener('contextmenu', function(event) {
+            event.preventDefault();
+        });
+
+        document.getElementById('video').addEventListener('ended', function() {
+            // Prevent default browser behavior of looping the video
+            this.loop = false;
+            // Pause the audio when the video ends
+            document.getElementById('audio').pause();
+        });
+    </script>
+</body>
+</html>
